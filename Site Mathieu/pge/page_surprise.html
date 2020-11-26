@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Informations générales-->
+		<title>JOYEUX ANNIVERSAIRE MIMI</title>
+		<meta charset="utf-8" />
+        <link rel="stylesheet" href="../pge/design.css"/>
+
+	</head>
+
+
+	<body id="body_page_surprise">
+		<!-- Corps de la page-->
+		<div class="conteneur">
+			<span class="porte1"><a id="a1"><image id="porteImg1" src="../img/porte.jpg" alt="Photo de porte" onclick="FermerPorte(1)"/></a></span>
+			<span class="porte2"><a id="a2"><image id="porteImg2" src="../img/porte.jpg" alt="Photo de porte" onclick="FermerPorte(2)"/></a></span>
+			<span class="porte3"><a id="a3"><image id="porteImg3" src="../img/porte.jpg" alt="Photo de porte" onclick="FermerPorte(3)"/></a></span>
+		</div>
+		<div class="enigme">
+			<h2 style="margin-right: 0px;margin-left: 80px;"> Tu croyais que ça allait être aussi facile? </h2>
+			<p class="description"> Derrière ces portes, tu découvrira des petites surprises. Si tu les observes bien,
+			elle t'ameneront dans un monde magique!</p>
+			<p class="description"> Lorsque tu penses avoir fini, je te laisse cliquer sur ce bouton... <button id="check" onclick='check()'>sku</button></p>
+			<p id ="e1" hidden>Où a été prise cette photo du Mathieu studieux <br/>
+				<input id="ie1" type="text" placeholder="Tu as une idée?" title="Avec majuscule, juste la première particule!"/></p>
+			<p id = "e2" hidden>Le Mathieu chez Claireux ressemble à ... (♥) <br/>
+				<input id="ie2_1" type="checkbox" checked="false" type="CBe2" value="chaton"/><label for = "ie2_1"> Un petit chaton </label><br/>
+				<input id="ie2_2" type="checkbox" checked="false" type="CBe2" value="lapin"/><label for = "ie2_2"> Un petit lapin </label><br/>
+				<input id="ie2_3" type="checkbox" checked="false" type="CBe2" value="tigre"/><label for = "ie2_3"> Un petit tigre </label><br/></p>
+			<p id="e3" hidden>Sur quelle musique danse le Mathieu popstar<br/>
+				<input id="ie3" type="text" placeholder="Mouahaha" title="Quatres lettres"/>
+				<button id="ie3Button" value="indice" onclick="RajoutVideo()">Un indice?</button><div id="txtVidp"></div></p>
+			<div id="divVid"><div id="e4" hidden><p>Le Mathieu dans sa maison est un éternel romantique! Dessine un joli coeur!<br/></p></div></div>
+			<p id = "e5" hidden>Amnène le Mathieu skieur au bord de la piste!<br/><input id="ie5" type="range" min="0" max="25" step="1"/></p>
+			<p id="e6" hidden>Le Mathieu au Sénégal était vraiment très mignon... Mais as tu trouvé le nombre qu'il cachait?<br/>
+				<input id="ie6" type="number" placeholder="666" style="margin-left: 200px;margin-top: 35px;"/>
+				<br/>Si tu as déjà fermé l'image.... Tu peux cliquer ici pour la réouvrir !=><button id = "reset" onclick="Reset()">O:)</button></p>
+		</div>
+		<div class="conteneur">
+			<span class="porte4"><a id="a4"><image id="porteImg4" src="../img/porte.jpg" alt="Photo de porte" onclick="FermerPorte(4)"/></a></span>
+			<span class="porte5"><a id="a5"><image id="porteImg5" src="../img/porte.jpg" alt="Photo de porte" onclick="FermerPorte(5)"/></a></span>
+			<span class="porte6"><a id="a6"><image id="porteImg6" src="../img/porte.jpg" alt="Photo de porte" onclick="FermerPorte(6)"/></a></span>
+		</div>
+
+
+	</body>
+	<script>
+		let vid = document.createElement("div");
+		let pVid = document.querySelector('#divVid');
+		let BouttonCheck = 0;
+		let txtVid = document.createElement("div");
+		let txtVidp = document.querySelector("#txtVidp");
+		txtVid.textContent = "réappuye pour cacher!";
+		vid.innerHTML = "<br/><video src='../img/videosurprise.mp4' controls poster='m3.jpg' width='600'></video><br/>";
+		function RajoutVideo(){
+			if (BouttonCheck == 0){
+				pVid.appendChild(vid);
+				txtVidp.appendChild(txtVid);
+				BouttonCheck = 1;
+			}
+			else {
+				pVid.removeChild(vid);
+				txtVidp.removeChild(txtVid);
+				BouttonCheck=0;
+			}
+		}
+		let x = 11; let y =10; let div4 = document.querySelector('#e4');
+		let x_count=1; let y_count=1;
+		for (var i = 1;i<y+1;i++){
+			let div_count = "div"+(y_count+"");
+			let divC=document.createElement('div');
+			divC.className = div_count;
+			div4.appendChild(divC);
+			y_count++;
+			x_count=1;
+			for (var j = 1;j<x+1;j++){
+				let checkbox_count = div_count+"_CB"+(x_count+"");
+				let checkbox=document.createElement('input');
+				checkbox.className = checkbox_count;
+				checkbox.setAttribute('type','checkbox');
+				checkbox.classList.add("CBnok");
+				divC.appendChild(checkbox);
+				x_count++;
+			}
+		}
+		var trackeur = [[['3'],['4'],['8'],['9']],[['2'],['5'],['6'],['7'],['10']],[['1'],['11']],[['1'],['11']],[['1'],['11']],[['2'],['10']],[['3'],['9']],[['4'],['8']],[['5'],['7']],[['6']]];
+
+		for (var m=0;m<trackeur.length;m++){
+			for (var n=0;n<trackeur[m].length;n++){
+				let CBtrk = '.div'+((m+1)+"")+"_CB"+trackeur[m][n]
+				let checkbox_modif = document.querySelector(CBtrk);
+				checkbox_modif.classList.add("CBok");
+				checkbox_modif.classList.remove("CBnok");
+			}
+		}
+		let A_check=new Array(6);for (q=0;q<6;q++){A_check[q]=0;};
+
+		function FermerPorte(g){
+			let PorteAFermer=document.querySelector('#porteImg'+(g+""));
+			PorteAFermer.setAttribute('src', '../img/porteF.jpg');
+			if (A_check[g-1]==0){
+				window.open("../img/m"+(g+"")+".jpg","m1","menubar=no, status=no");
+				A_check[g-1]=1;
+				let p_enigme = document.querySelector('#e'+(g+""));
+				p_enigme.removeAttribute("hidden");
+			}
+		}
+
+		let A_vraie= ['Villebois',[false,true,false],'YMCA',true,"25","30"];
+		let A_rep=[0,[0,0,0],0,0,0,0];
+		let CoeurEntier=1;
+
+		function check(){
+			for (i=1;i<7;i++){
+				let check_trck = i;
+				if (check_trck==2){
+					for (j=1;j<4;j++){
+						var sous_check_trck = j;
+						var sous_enigme_ToBeChecked=document.querySelector('#ie'+(check_trck+"")+'_'+(sous_check_trck+""));
+						A_rep[check_trck-1][sous_check_trck-1]= sous_enigme_ToBeChecked.checked;
+					}
+				}
+				else if (check_trck==4){
+					var CoeurEntier =1;
+					let ListeCB = document.getElementsByClassName('CBok');
+					for (k=0;k < ListeCB.length;k++){if (ListeCB[k].checked == false){CoeurEntier=0;}}
+					if (CoeurEntier == 1){A_rep[check_trck-1]=true;}
+				}
+				else{
+					let enigme_ToBeChecked=document.querySelector('#ie'+ (check_trck+""));
+					A_rep[check_trck-1]=enigme_ToBeChecked.value;
+				}
+			}
+			if (A_vraie.join() == A_rep.join()){
+				window.alert('code = JoyeuxAnniversaireMimi')
+				window.open("../Accueil.html");
+			}
+			else{
+				window.alert('Ah, il y a une erreur!');
+				for (k=1;k<7;k++){
+					let QuelleFausse = k;
+					let EnigmeFausse = document.querySelector('#e'+(QuelleFausse+""));
+					if (QuelleFausse !== 2){
+						if (A_vraie[k-1] !== A_rep[k-1]){EnigmeFausse.setAttribute('style','background-color:red;');}
+					    else{EnigmeFausse.setAttribute('style','background-color:black;');}
+					}
+					else{
+						if (A_vraie[1].join() !== A_rep[1].join()){EnigmeFausse.setAttribute('style','background-color:red;');}
+						else{EnigmeFausse.setAttribute('style','background-color:black;');}
+					}
+				}
+			}
+		}
+
+	var elementsI = document.getElementsByTagName('input');
+	function Reset(){
+		for (var i = 0, element; elementI = elementsI[i++];){
+			if (elementI.type === "text"){elementI.value = "";}
+			if (elementI.type === "checkbox"){elementI.checked = false;}
+			if (elementI.type === "number"){elementI.value = 0;}
+			if (elementI.type === "range"){elementI.value = 0;}
+		}
+		for (j=1;j<7;j++){
+			let g=j;
+			let PorteAFermer=document.querySelector('#porteImg'+(g+""));
+			PorteAFermer.setAttribute('src', '../img/porte.jpg');
+			A_check[g-1]=0;
+		}
+	}
+    </script>
+</html>

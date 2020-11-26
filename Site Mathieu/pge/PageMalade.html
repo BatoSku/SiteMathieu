@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Informations générales-->
+		<title>Bien joué Beau Goss!</title>
+		<meta charset="utf-8"/>
+        <link rel="stylesheet" href="pge/design.css"/>
+	</head>
+
+
+	<body>
+	<!-- Corps de la page-->
+	<div id="ensemble1" onclick="Haha()" style="background:yellow";>
+	<h5 style="font-size:50px;color:red;background:yellow;"> Tu as gagné bien joué!</h5>
+	<p> Clique sur ta tête que tu es prêt</p>
+	<image src="../img/mbonus.jpg">
+	<audio src='../img/musique.mp3' autoplay="true">
+	</div>
+	</body>
+	<script>
+		function Haha(){
+			window.alert("JOYEUX ANNIVERSAIRE !!!!!!! tu t'attendais à un cadeau? Dommage, ce n'est pas le moment! J'espère que tu t'ai amusé, bisous! (clique sur ok pour une dernière surprise)");
+			let msc = document.createElement('audio');
+				msc.setAttribute('src','../img/musique.mp3');
+				msc.setAttribute('autoplay','');
+			ensemble1.appendChild(msc);
+		}
+	</script>
+</html>
