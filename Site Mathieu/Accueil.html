@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Informations générales-->
+		<title>JOYEUX ANNIVERSAIRE MIMI</title>
+		<meta charset="utf-8"/>
+        <link rel="stylesheet" href="pge/design.css"/>
+	</head>
+
+
+	<body>
+	<!-- Corps de la page-->
+	<div class="ensemble1">
+		<h1>Coucou Mimi, ouvres moi!</h1>
+		<p>
+			<a href="pge/page_surprise.html">
+				<img class="kdo" src="img/cadeau.jpg" alt="le cadeau" /> 
+			</a>
+			<p><input id='code'type='text'><button onclick='OuvreCode()'></button></p>
+		</p>
+	</div>
+	</body>
+
+	<script>
+		function OuvreCode(){
+			let mdp = document.querySelector('#code');
+			if (mdp.value=== "JoyeuxAnniversaireMimi"){window.open('pge/PageMalade.html');}
+		}
+	</script>
+</html>
